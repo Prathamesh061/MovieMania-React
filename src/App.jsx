@@ -1,14 +1,18 @@
 import React from "react";
 import { useState } from "react";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import "./app.css";
+import WhatsHot from "./components/WhatsHot";
 
 function App() {
   const [count, setCount] = useState(1);
   return (
-    <>
-      <h1>MovieMania With Prathamesh</h1>
-      <h1>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-    </>
+    <div className="app">
+      <Header />
+      <WhatsHot />
+      <Footer />
+    </div>
   );
 }
 
