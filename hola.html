@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Carousel Example</title>
+    <style>
+        /* Carousel container styles */
+        .carousel {
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Carousel slide item styles */
+        .carousel-item {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Active slide item styles */
+        .carousel-item.active {
+            display: block;
+        }
+
+        /* Carousel navigation styles */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Carousel navigation button styles */
+        .carousel-nav button {
+            background-color: #555;
+            border: none;
+            color: #fff;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        /* Carousel dot navigation styles */
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+        /* Individual dot styles */
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        /* Active dot styles */
+        .carousel-dot.active {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="carousel-item active">
+            <img src="image1.jpg" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img src="image2.jpg" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+            <img src="image3.jpg" alt="Image 3">
+        </div>
+        <!-- Add more carousel items as needed -->
+
+        <div class="carousel-nav">
+            <button onclick="changeSlide(-1)">&lt;</button>
+            <button onclick="changeSlide(1)">&gt;</button>
+        </div>
+
+        <div class="carousel-dots">
+            <span class="carousel-dot active" onclick="changeSlide(0)"></span>
+            <span class="carousel-dot" onclick="changeSlide(1)"></span>
+            <span class="carousel-dot" onclick="changeSlide(2)"></span>
+            <!-- Add more dots as needed -->
+        </div>
+    </div>
+
+    <script>
+        // JavaScript logic for carousel functionality
+        var currentSlide = 0;
+        var slides = document.querySelectorAll('.carousel-item');
+        var dots = document.querySelectorAll('.carousel-dot');
+
+        function changeSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

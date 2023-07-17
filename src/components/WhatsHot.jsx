@@ -7,8 +7,7 @@ function WhatsHot() {
   useEffect(() => {
     fetch("https://api.themoviedb.org/3/movie/popular", {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOGQ3NDEwMmQwYjNiOThmN2M5MDI3YjNjOTBiODI0ZSIsInN1YiI6IjY0YjQzZDc2MGU0ZmM4MDEzYjU0ZGRiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c3pC0-FJQpLl4H7z3H3d39PNPTJTwtyPpOqrl2i9cVo",
+        Authorization: "Bearer process.env.API_KEY",
         Accept: "application/json",
       },
     })
@@ -47,19 +46,3 @@ function WhatsHot() {
 }
 
 export default WhatsHot;
-
-// const vanElements = vans.map((van) => (
-//   <div key={van.id} className="van-tile">
-//     <Link to={`/vans/${van.id}`}>
-//       <img src={van.imageUrl} />
-//       <div className="van-info">
-//         <h3>{van.name}</h3>
-//         <p>
-//           ${van.price}
-//           <span>/day</span>
-//         </p>
-//       </div>
-//       <i className={`van-type ${van.type} selected`}>{van.type}</i>
-//     </Link>
-//   </div>
-// ));

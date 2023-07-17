@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+require("dotenv").config();
 
 module.exports = {
   mode: "development",
@@ -12,6 +14,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Output Management",
       template: "./src/index.html",
+    }),
+    new webpack.DefinePlugin({
+      "process.env.API_KEY": JSON.stringify(process.env.API_KEY),
+      "process.env.API_KEY  ": JSON.stringify(process.env.API_KEY),
     }),
   ],
   module: {
