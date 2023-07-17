@@ -1,23 +1,38 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
+
 import "./css/header.css";
 
 function Header() {
+  const activeStyles = {
+    fontWeight: "bold",
+    color: "#ffa506",
+  };
+
   return (
     <div className="header">
       <div className="logo">
-        <a href="#">MovieMania</a>
+        <Link to="/">MovieMania</Link>
       </div>
       <nav className="nav">
         <ul className="nav__list">
           <li className="nav__item">
-            <a href="#" className="nav__link">
+            <NavLink
+              to="/"
+              className="nav__link"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
               New Releases
-            </a>
+            </NavLink>
           </li>
           <li className="nav__item">
-            <a href="#" className="nav__link">
+            <NavLink
+              to="/popularmovies"
+              className="nav__link"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
               What's Hot
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>

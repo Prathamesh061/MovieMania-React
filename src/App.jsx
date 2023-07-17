@@ -1,18 +1,19 @@
 import React from "react";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import "./app.css";
+import Layout from "./components/Layout";
 import WhatsHot from "./components/WhatsHot";
 import NewReleases from "./components/NewReleases";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      {/* <WhatsHot /> */}
-      <NewReleases />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<NewReleases />} />
+          <Route path="popularmovies" element={<WhatsHot />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -55,11 +55,6 @@ a {
     text-decoration: none;
 }
 
-:focus {
-    outline: 3px solid var(--clr-sunset-orange);
-    outline-offset: 3px;
-}
-
 /* Typography */
 
 h1,
