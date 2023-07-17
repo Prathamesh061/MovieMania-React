@@ -2,23 +2,22 @@ import React, { useState, useEffect } from "react";
 import "./css/whatshot.css";
 
 function WhatsHot() {
-  const [movies, setMovies] = useState([]);
+  const [hotMovies, setHotMovies] = useState([]);
 
   useEffect(() => {
     fetch("https://api.themoviedb.org/3/movie/popular", {
       headers: {
-        Authorization: "Bearer process.env.API_KEY",
+        Authorization: `Bearer ${process.env.API_KEY}`,
         Accept: "application/json",
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        setMovies(data.results);
-        console.log(data.results[0]);
+        setHotMovies(data.results);
       });
   }, []);
 
-  const movieElements = movies.map((movie) => {
+  const movieElements = hotMovies.map((movie) => {
     return (
       <div key={movie.id} className="movie-card">
         <img

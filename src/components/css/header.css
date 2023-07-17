@@ -15,6 +15,7 @@
     font-size: var(--fs-h2);
     color: var(--clr-sunset-orange);
     margin: auto 0;
+    cursor: pointer;
 }
 
 .nav {
@@ -41,6 +42,7 @@
     font-weight: var(--fw-bold);
     font-size: var(--fs-h3);
     text-decoration: none;
+    cursor: pointer;
 }
 
 .nav__link:hover {
@@ -59,4 +61,20 @@
 
 .nav__link:hover::after {
     width: 100%;
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav {
+        background: var(--clr-light);
+        margin-top: 1em;
+    }
+
+    .nav__link {
+        color: var(--clr-dark);
+    }
 }

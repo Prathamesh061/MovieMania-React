@@ -3,12 +3,14 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./app.css";
 import WhatsHot from "./components/WhatsHot";
+import NewReleases from "./components/NewReleases";
 
 function App() {
   return (
     <div className="app">
       <Header />
-      <WhatsHot />
+      {/* <WhatsHot /> */}
+      <NewReleases />
       <Footer />
     </div>
   );
