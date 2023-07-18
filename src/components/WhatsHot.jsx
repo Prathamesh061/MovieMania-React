@@ -4,7 +4,6 @@ import "./css/whatshot.css";
 function WhatsHot() {
   const [hotMovies, setHotMovies] = useState([]);
 
-  console.log(process.env.API_KEY);
   useEffect(() => {
     fetch("https://api.themoviedb.org/3/movie/popular", {
       headers: {
