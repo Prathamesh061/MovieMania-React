@@ -13,7 +13,6 @@ function WhatsHot() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setHotMovies(data.results);
       });
   }, []);
