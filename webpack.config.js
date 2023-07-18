@@ -8,8 +8,6 @@ module.exports = {
 
   entry: "./src/index.jsx",
 
-  devtool: "inline-source-map",
-
   plugins: [
     new HtmlWebpackPlugin({
       title: "Output Management",
@@ -49,8 +47,5 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
     publicPath: "/",
-  },
-  optimization: {
-    runtimeChunk: "single",
   },
 };
