@@ -1,37 +1,66 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useCallback, useState } from "react";
+import useMovie from "../hooks/useMovie";
 import "./css/whatshot.css";
 
 function WhatsHot() {
-  const [hotMovies, setHotMovies] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const { loading, error, movies, hasMore } = useMovie(pageNumber);
 
-  useEffect(() => {
-    fetch("https://api.themoviedb.org/3/movie/popular", {
-      headers: {
-        Authorization: `Bearer ${process.env.API_KEY}`,
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setHotMovies(data.results);
-      });
-  }, []);
+  const observer = useRef();
+  const lastMovieElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      console.log("working");
+      observer.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && hasMore) {
+            setPageNumber((prevNum) => prevNum + 1);
+          }
+        },
+        {
+          threshold: 1,
+        }
+      );
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
-  const movieElements = hotMovies.map((movie) => {
-    return (
-      <div key={movie.id} className="movie-card">
-        <img
-          src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}
-          alt=""
-          className="movie-poster"
-        />
-        <p className="movie-rating">
-          {movie.vote_average}
-          <i class="fa fa-star" style={{ color: "gold" }}></i>
-        </p>
-        <h3 className="movie-title">{movie.title}</h3>
-      </div>
-    );
+  const movieElements = movies.map((movie, index) => {
+    {
+      if (movies.length === index + 1) {
+        return (
+          <div ref={lastMovieElementRef} key={index} className="movie-card">
+            <img
+              src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}
+              alt=""
+              className="movie-poster"
+            />
+            <p className="movie-rating">
+              {movie.vote_average}
+              <i className="fa fa-star" style={{ color: "gold" }}></i>
+            </p>
+            <h3 className="movie-title">{movie.title}</h3>
+          </div>
+        );
+      } else {
+        return (
+          <div key={index} className="movie-card">
+            <img
+              src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}
+              alt=""
+              className="movie-poster"
+            />
+            <p className="movie-rating">
+              {movie.vote_average}
+              <i className="fa fa-star" style={{ color: "gold" }}></i>
+            </p>
+            <h3 className="movie-title">{movie.title}</h3>
+          </div>
+        );
+      }
+    }
   });
 
   return (
@@ -40,6 +69,8 @@ function WhatsHot() {
         <h3 className="movies-container__title">What's Hot</h3>
       </div>
       <div className="movie-list">{movieElements}</div>
+      {loading && <div className="loader">Loading...</div>}
+      {error && <div className="error">Error...</div>}
     </div>
   );
 }

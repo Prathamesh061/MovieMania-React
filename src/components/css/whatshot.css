@@ -57,3 +57,15 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 0.4rem;
 }
+
+.loader {
+    font-weight: var(--fw-bold);
+    font-family: var(--ff-primary);
+    text-align: center;
+}
+
+.error {
+    font-weight: var(--fw-bold);
+    font-family: var(--ff-primary);
+    text-align: center;
+}

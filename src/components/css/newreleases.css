@@ -25,7 +25,6 @@
 
 .movie-backdrop {
     width: 100%;
-    height: 50vh;
     display: block;
     grid-area: backdrop;
     margin-bottom: 1.5em;
